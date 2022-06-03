@@ -1,0 +1,23 @@
+{
+  "name": "screen-recorder",
+  "version": "1.0.0",
+  "description": "A website that allows you to record your screen and get a downloadable file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelahmadi/screenrecorder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelahmadi/screenrecorder/issues"
+  },
+  "homepage": "https://github.com/michaelahmadi/screenrecorder#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}
