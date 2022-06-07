@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/dist/main.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/dist/main.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./index.css" />
     <title>Screen Recorder</title>
-</head>
-<body>
-</body>
+  </head>
+  <body>
+    <div class="container mx-auto py-8 px-4">
+      <video src="" class="w-full h-auto bg-black mb-5"></video>
+
+      <div class="z-50 flex justify-center items-center text-white text-lg">
+        <button
+          class="bg-green-700 font-bold h-10 w-auto px-3 mr-5 rounded hover:bg-green-600 transition shadow-green-600 shadow disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-green-600"
+        >
+          Start Recording
+        </button>
+        <button
+          class="bg-red-700 font-bold h-10 w-auto px-3 rounded hover:bg-red-600 transition shadow-red-600 shadow disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-red-600"
+          disabled
+        >
+          Stop Recording
+        </button>
+      </div>
+    </div>
+  </body>
 </html>
