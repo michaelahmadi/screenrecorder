@@ -2,15 +2,19 @@ let videoStream = null,
     audioStream = null,
     mixedStream = null,
     chunks = [],
-    recorder = null,
-    recordedVideo = null;
+    recorder = null
 
+const videoFeedback = document.querySelector('.video-feedback');
 const startButton = document.querySelector('.start-button');
 const stopButton = document.querySelector('.stop-button');
-const videoFeedback = document.querySelector('.video-feedback');
+const recordedVideo = document.querySelector('.recorded-video');
+const downloadButton = document.querySelector('.download-button');
+const filetypeDropdown = document.querySelector('.filetype-dropdown');
+const postRecording = document.querySelector('.post-recording');
 
 startButton.addEventListener('click', startRecording);
 stopButton.addEventListener('click', stopRecording);
+filetypeDropdown.addEventListener('change', makeVideo);
 
 async function setupStream () {
     try {
@@ -44,6 +48,14 @@ function setupVideoFeedback () {
 }
 
 async function startRecording () {
+    // If the postRecording section is not hidden, set it to hidden.
+    if(!postRecording.classList.contains("hidden")) {
+        postRecording.classList.add("hidden")
+    }
+
+    // Reset chunks in case this is not the first recording
+    chunks = []
+
     await setupStream();
 
     if (videoStream && audioStream) {
@@ -52,28 +64,46 @@ async function startRecording () {
             ...audioStream.getTracks()])
     }
     recorder = new MediaRecorder(stream);
-    recorder.onstop = handleStop;
     recorder.ondataavailable = e => chunks.push(e.data);
     recorder.start(200);
 
     startButton.disabled = true;
-    stopButton.disable = false;
+    stopButton.disabled = false;
 }
 
 function stopRecording() {
     recorder.stop();
 
+    makeVideo();
+
     startButton.disabled = false;
     stopButton.disabled = true;
 
-    console.log("Stopped recording")
+    // Unhide recorded video preview, download button, and filetype dropdown
+    postRecording.classList.remove("hidden");
+    postRecording.scrollIntoView({behavior: "smooth", block: "start"});
+
+    videoStream.getTracks().forEach(track => track.stop());
+    audioStream.getTracks().forEach(track => track.stop());
+
+    console.log("Stopped recording");
 }
 
-function handleStop (e) {
+function makeVideo (e) {
+    
     const blob = new Blob(chunks, {
-        type: 'video/mp4'
+        type: `video/${e ? e.target.value : "mp4"}`
     })
-    chunks = [];
+    
+    url = URL.createObjectURL(blob);
+    console.log(url);
+    downloadButton.href = url;
+    downloadButton.download = `video${filetypeDropdown.options[filetypeDropdown.selectedIndex].text}`
+    console.log(downloadButton.download);
 
-    // Incomplete
+    recordedVideo.src = url;
+    recordedVideo.load();
+    recordedVideo.onloadeddata = () => {
+        recordedVideo.play();
+    }
 }
