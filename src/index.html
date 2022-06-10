@@ -8,9 +8,13 @@
   </head>
   <body>
     <div class="container mx-auto py-8 px-4">
-      <video src="" autoplay class="video-feedback w-full h-auto bg-black mb-5"></video>
+      <video
+        src=""
+        autoplay
+        class="video-feedback w-full h-auto bg-black mb-5"
+      ></video>
 
-      <div class="z-50 flex justify-center items-center text-white text-lg">
+      <div class="flex justify-center items-center text-white text-lg mb-8">
         <button
           class="start-button bg-green-700 font-bold h-10 w-auto px-3 mr-5 rounded hover:bg-green-600 transition shadow-green-600 shadow disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-green-600"
         >
@@ -23,8 +27,28 @@
           Stop Recording
         </button>
       </div>
+
+      <div class="mb-28">
+        <video src="" class="recorded-video bg-black w-full h-auto pt-8"></video>
+        <div class="flex justify-center items-center text-lg mt-6">
+          <button
+            class="download-button bg-slate-700 text-white font-bold h-10 w-auto px-3 mr-5 rounded shadow shadow-slate-700 hover:bg-slate-600 transition"
+          >
+            Download
+          </button>
+          <select
+          name="filetype"
+          class="filetype-dropdown flex justify-center items-center font-bold text-black bg-gray-400 h-10 w-auto rounded pl-3 cursor-pointer shadow-md outline-0"
+          >
+            <option value="mp4">.mp4</option>
+            <option value="webm">.webm</option>
+            <option value="mkv">.mkv</option>
+            <option value="mov">.mov</option>
+          </select>
+        </div>
+      </div>
     </div>
-  
-  <script src="main.js"></script>
+
+    <script src="main.js"></script>
   </body>
 </html>
