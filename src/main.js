@@ -98,7 +98,7 @@ function makeVideo (e) {
     url = URL.createObjectURL(blob);
     console.log(url);
     downloadButton.href = url;
-    downloadButton.download = `video${filetypeDropdown.options[filetypeDropdown.selectedIndex].text}`
+    downloadButton.download = `recording${filetypeDropdown.options[filetypeDropdown.selectedIndex].text}`
     console.log(downloadButton.download);
 
     recordedVideo.src = url;
